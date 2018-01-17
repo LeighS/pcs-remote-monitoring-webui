@@ -27,7 +27,7 @@ class DevicesPage extends Component {
     this.state = {
       softSelectedDeviceId: '',
       lastRefreshed: new Date(),
-      rowData: this.props.devices,
+      rowData: this.filterDevies(this.props.devices),
       contextBtns: ''
     };
     this.refreshData = this.refreshData.bind(this);
@@ -37,7 +37,7 @@ class DevicesPage extends Component {
     this.setState({ lastRefreshed: new Date(), rowData: undefined }, () => { this.props.actions.loadDevices(true); });
   }
 
-  componentWillReceiveProps(nextProps) { this.setState({ rowData: nextProps.devices }); }
+  componentWillReceiveProps(nextProps) { this.setState({ rowData: this.filterDevies(nextProps.devices) }); }
 
   componentDidMount() { this.props.actions.showingDevicesPage(); }
 
@@ -54,6 +54,20 @@ class DevicesPage extends Component {
   /** Listen for changes in the dynamic context filters and update accordingly */
   onContextMenuChange = contextBtns => this.setState({ contextBtns });
 
+  filterDevies(devices) {
+    if (!devices || !devices.Items) {
+      return devices;
+    }
+    return {
+      Items: devices.Items.filter((device) => {
+        if (!this.props.params || !this.props.params.status) {
+          return true;
+        }
+        return device.Connected === (this.props.params.status === 'Connected');
+      })
+    };
+  }
+  
   render() {
     // Extract the devices from the props
     const devices = (this.state.rowData || {}).Items;

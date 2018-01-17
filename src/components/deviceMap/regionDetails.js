@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import { Row, Col } from 'react-bootstrap';
 import lang from '../../common/lang';
 import './regionDetails.css';
@@ -8,6 +9,43 @@ import WarningSvg from '../../assets/icons/Warning.svg';
 import CriticalSvg from '../../assets/icons/Critical.svg';
 
 class RegionDetails extends Component {
+  constructor() {
+    super();
+    this.offlineDeviceLink = this.offlineDeviceLink.bind(this);
+    this.totalDeviceLink = this.totalDeviceLink.bind(this);
+    this.onlineDeviceLink = this.onlineDeviceLink.bind(this);
+  }
+
+  onlineDeviceLink = () => {
+    browserHistory.push({
+      pathname: `/devices/Connected`
+    });
+  };
+
+  totalDeviceLink() {
+    browserHistory.push({
+      pathname: `/devices`
+    });
+  }
+
+  offlineDeviceLink() {
+    browserHistory.push({
+      pathname: `/devices/NotConnected`
+    });
+  }
+
+  criticalAlarmsLink() {
+    browserHistory.push({
+      pathname: `/maintenance/critical`
+    });
+  }
+
+  warningAlarmsLink() {
+    browserHistory.push({
+      pathname: `/maintenance/warning`
+    });
+  }
+
   render() {
     const regionDetailsProps = {
       onlineDevicesCount: 0,
@@ -15,6 +53,7 @@ class RegionDetails extends Component {
       totalAlarmDeviceCount: 0,
       totalWarningsDeviceCount: 0
     };
+
     if (this.props.devices) {
       regionDetailsProps.onlineDevicesCount = this.props.devices.Items.filter(item => {
         return item.Connected;
@@ -47,42 +86,32 @@ class RegionDetails extends Component {
       <Col md={3} className="device-location-conatiner">
         <h3>{selectedDeviceGroupName}</h3>
         <Row className="alarm-warning-container">
-          <Col md={6} className="total-alarms-container">
-            <div className="total-alarms">
-              {regionDetailsProps.totalAlarmDeviceCount}
-            </div>
+          <Col md={6} className="total-alarms-container" onClick={this.criticalAlarmsLink}>
+            <div className="total-alarms">{regionDetailsProps.totalAlarmDeviceCount}</div>
             <img src={CriticalSvg} alt={`${CriticalSvg}`} className="total triangle" />
             <div className="critical">{lang.CRITICAL}</div>
           </Col>
           <Col md={6} className="total-alarms-container warnings-container">
-            <div className="total-alarms total-warnings">
+            <div className="total-alarms total-warnings" onClick={this.warningAlarmsLink}>
               {regionDetailsProps.totalWarningsDeviceCount}
             </div>
             <img src={WarningSvg} alt={`${WarningSvg}`} className="triangle rectangle" />
-            <div className="total warnings">
-              {lang.WARNINGS}
-            </div>
+            <div className="total warnings">{lang.WARNINGS}</div>
           </Col>
         </Row>
         <Row>
-          <Col md={4} className="total-container">
+          <Col md={4} className="total-container" onClick={this.totalDeviceLink}>
             <div className="total">
               {regionDetailsProps.onlineDevicesCount + regionDetailsProps.offlineDevicesCount}
             </div>
-            <div className="warnings">
-              {lang.TOTAL}
-            </div>
+            <div className="warnings">{lang.TOTAL}</div>
           </Col>
-          <Col md={4} className="total-container total-online-container">
-            <div className="total-connected">
-              {regionDetailsProps.onlineDevicesCount}
-            </div>
+          <Col md={4} className="total-container total-online-container" onClick={this.onlineDeviceLink}>
+            <div className="total-connected">{regionDetailsProps.onlineDevicesCount}</div>
             <div className="connected">{lang.CONNECTED}</div>
           </Col>
-          <Col md={4} className="total-container total-offline-container">
-            <div className="total-offline">
-              {regionDetailsProps.offlineDevicesCount}
-            </div>
+          <Col md={4} className="total-container total-offline-container" onClick={this.offlineDeviceLink}>
+            <div className="total-offline">{regionDetailsProps.offlineDevicesCount}</div>
             <div className="offline">{lang.OFFLINE}</div>
           </Col>
         </Row>

@@ -37,12 +37,14 @@ ReactDOM.render(
         <IndexRoute component={DashboardPage} />
         <Route path="/dashboard" component={DashboardPage} />
         <Route path="/devices" component={DevicesPage} />
+        <Route path="/devices/:status" component={DevicesPage} />
         <Route path="/rulesActions" component={RulesAndActionsPage} />
         <Route path="/maintenance" component={MaintenancePage}>
           <IndexRoute component={MaintenanceWidget} />
           <Route path="/maintenance/:id" component={MaintenanceWidget}>
             <IndexRoute component={AlarmsByRuleGrid} />
             <Route path="/alarmsByRule" component={AlarmsByRuleGrid} />
+            <Route path="/alarmsByRule/:severity" component={AlarmsByRuleGrid} />
             <Route path="/systemStatus" component={SystemStatusGrid} />
           </Route>
           <Route path="rule/:id" component={RuleDetailsPage} />
