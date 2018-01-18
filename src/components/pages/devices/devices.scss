@@ -20,4 +20,12 @@
       height: 14px;
       margin-left: 2px;
     }
+
+    .no-results {
+      font-size: 18px;
+      color: $white;
+      display: flex;
+      justify-content: center;
+      // margin-top: 20px;
+    }
 }
