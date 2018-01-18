@@ -11,38 +11,16 @@ import CriticalSvg from '../../assets/icons/Critical.svg';
 class RegionDetails extends Component {
   constructor() {
     super();
-    this.offlineDeviceLink = this.offlineDeviceLink.bind(this);
-    this.totalDeviceLink = this.totalDeviceLink.bind(this);
-    this.onlineDeviceLink = this.onlineDeviceLink.bind(this);
+    this.criticalAlarmsLink = this.gotoLink.bind(null, '/maintenanceBySeverity/critical');
+    this.warningAlarmsLink = this.gotoLink.bind(null, '/maintenanceBySeverity/warning');
+    this.offlineDeviceLink = this.gotoLink.bind(null, '/devices/NotConnected');
+    this.totalDeviceLink = this.gotoLink.bind(null, '/devices');
+    this.onlineDeviceLink = this.gotoLink.bind(null, '/devices/Connected');
   }
 
-  onlineDeviceLink = () => {
+  gotoLink(linkPath) {
     browserHistory.push({
-      pathname: `/devices/Connected`
-    });
-  };
-
-  totalDeviceLink() {
-    browserHistory.push({
-      pathname: `/devices`
-    });
-  }
-
-  offlineDeviceLink() {
-    browserHistory.push({
-      pathname: `/devices/NotConnected`
-    });
-  }
-
-  criticalAlarmsLink() {
-    browserHistory.push({
-      pathname: `/maintenance/critical`
-    });
-  }
-
-  warningAlarmsLink() {
-    browserHistory.push({
-      pathname: `/maintenance/warning`
+      pathname: linkPath
     });
   }
 

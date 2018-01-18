@@ -44,11 +44,13 @@ ReactDOM.render(
           <Route path="/maintenance/:id" component={MaintenanceWidget}>
             <IndexRoute component={AlarmsByRuleGrid} />
             <Route path="/alarmsByRule" component={AlarmsByRuleGrid} />
-            <Route path="/alarmsByRule/:severity" component={AlarmsByRuleGrid} />
             <Route path="/systemStatus" component={SystemStatusGrid} />
           </Route>
           <Route path="rule/:id" component={RuleDetailsPage} />
           <Route path="job/(:JobId)" component={SystemStatusDetailsGrid} />
+        </Route>
+        <Route path="/maintenanceBySeverity/:severity" component={MaintenancePage}>
+          <IndexRoute component={MaintenanceWidget} />
         </Route>
       </Route>
     </Router>
