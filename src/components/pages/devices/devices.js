@@ -67,7 +67,7 @@ class DevicesPage extends Component {
       })
     };
   }
-  
+
   render() {
     // Extract the devices from the props
     const devices = (this.state.rowData || {}).Items;
@@ -100,7 +100,7 @@ class DevicesPage extends Component {
             </div>
             <div onClick={this.refreshData} className="refresh-icon icon-sm" />
           </div>
-          { (devices || []).length> 0 ? <DevicesGrid {...deviceGridProps}/>  : <div className="no-results"> No results found </div> }
+          { (devices || []).length > 0 ? <DevicesGrid {...deviceGridProps}/>  : <div className="no-results"> No results found </div> }
         </PageContent>
       </PageContainer>
     );
