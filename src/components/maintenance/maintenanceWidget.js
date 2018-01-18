@@ -36,7 +36,7 @@ class MaintenanceWidget extends Component {
     }
   }
 
-  componentWillMount() { 
+  componentWillMount() {
     this.setStateFromProps(this.props);
   }
 
@@ -103,7 +103,13 @@ class MaintenanceWidget extends Component {
           <div className={`selection-item${alarmSelected}`} onClick={this.selectGrid}>{lang.NOTIFICATIONS}</div>
           <div className={`selection-item${systemSelected}`} onClick={this.selectGrid}>{lang.JOBS}</div>
         </div>
-        <div className={`grid-container${alarmSelected}`}><AlarmsByRuleGrid {...alarmsByRuleGridProps} /></div>
+        <div className={`grid-container${alarmSelected}`}>
+          {
+            (this.state.alarmsByRuleGridData || []).length > 0
+            ? <AlarmsByRuleGrid {...alarmsByRuleGridProps} />
+            : <div className="no-results">No results found</div>
+          }
+        </div>
         <div className={`grid-container${systemSelected}`}><SystemStatusGrid {...systemStatusProps}/></div>
       </div>
     );
