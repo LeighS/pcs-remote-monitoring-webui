@@ -107,7 +107,7 @@ class MaintenanceWidget extends Component {
           {
             (this.state.alarmsByRuleGridData || []).length > 0
             ? <AlarmsByRuleGrid {...alarmsByRuleGridProps} />
-            : <div className="no-results">No results found</div>
+            : <div className="no-results">{lang.NO_RESULTS_FOUND}</div>
           }
         </div>
         <div className={`grid-container${systemSelected}`}><SystemStatusGrid {...systemStatusProps}/></div>

@@ -191,6 +191,7 @@ const lang = {
   NO_DATA: 'No data available',
   NO_OCCURENCES: 'No occurences selected',
   NO_OF_DEVICES: 'No Of Devices',
+  NO_RESULTS_FOUND: 'No results found',
   NUMBER: 'Number',
   NUMBEROFDEVICES: 'Number of devices',
   OCCURRENCE: 'Occurrence',
