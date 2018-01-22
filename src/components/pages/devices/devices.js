@@ -63,7 +63,7 @@ class DevicesPage extends Component {
         if (!this.props.params || !this.props.params.status) {
           return true;
         }
-        return device.Connected === (this.props.params.status === 'Connected');
+        return device.Connected === (this.props.params.status.toLowerCase() === 'connected');
       })
     };
   }
