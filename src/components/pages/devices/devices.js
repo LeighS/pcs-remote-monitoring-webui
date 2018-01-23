@@ -61,7 +61,7 @@ class DevicesPage extends Component {
     return {
       Items: devices.Items.filter((device) => {
         if (!status) return true;
-  	    return device.Connected === isConnected;
+        return device.Connected === isConnected;
       })
     };
   }
