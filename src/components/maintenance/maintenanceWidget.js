@@ -27,9 +27,8 @@ class MaintenanceWidget extends Component {
     if (!props.alarmsGridData) return;
     if (_.startsWith(props.location.pathname, '/maintenanceBySeverity') && props.params.severity) {
       this.setState({
-        alarmsByRuleGridData : props.alarmsGridData.filter((item) => {
-          return item.severity === props.params.severity;
-        })
+        alarmsByRuleGridData:
+        props.alarmsGridData.filter(({ severity }) => severity === props.params.severity)
       });
     } else {
       this.setState({ alarmsByRuleGridData : props.alarmsGridData });
