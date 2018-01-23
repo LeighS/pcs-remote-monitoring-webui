@@ -100,7 +100,7 @@ class DevicesPage extends Component {
             </div>
             <div onClick={this.refreshData} className="refresh-icon icon-sm" />
           </div>
-          { (devices || []).length > 0 ? <DevicesGrid {...deviceGridProps}/>  : <div className="no-results">{lang.NO_RESULTS_FOUND}</div> }
+          { devices && devices.length === 0 ? <div className="no-results">{lang.NO_RESULTS_FOUND}</div> :  <DevicesGrid {...deviceGridProps}/> }
         </PageContent>
       </PageContainer>
     );

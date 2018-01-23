@@ -17,7 +17,7 @@ class MaintenanceWidget extends Component {
     this.state = {
       selectedGrid: 'Notifications',
       timerange: 'PT1H',
-      alarmsByRuleGridData: [],
+      alarmsByRuleGridData: undefined,
       lastRefreshed: new Date()
     }
     this.selectGrid = this.selectGrid.bind(this);
@@ -105,9 +105,9 @@ class MaintenanceWidget extends Component {
         </div>
         <div className={`grid-container${alarmSelected}`}>
           {
-            (this.state.alarmsByRuleGridData || []).length > 0
-            ? <AlarmsByRuleGrid {...alarmsByRuleGridProps} />
-            : <div className="no-results">{lang.NO_RESULTS_FOUND}</div>
+            alarmsByRuleGridProps.rowData && alarmsByRuleGridProps.rowData.length === 0
+            ? <div className="no-results">{lang.NO_RESULTS_FOUND}</div>
+            : <AlarmsByRuleGrid {...alarmsByRuleGridProps} />
           }
         </div>
         <div className={`grid-container${systemSelected}`}><SystemStatusGrid {...systemStatusProps}/></div>
