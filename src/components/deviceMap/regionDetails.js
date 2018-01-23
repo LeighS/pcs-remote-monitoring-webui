@@ -9,20 +9,8 @@ import WarningSvg from '../../assets/icons/Warning.svg';
 import CriticalSvg from '../../assets/icons/Critical.svg';
 
 class RegionDetails extends Component {
-  constructor() {
-    super();
-    this.criticalAlarmsLink = this.gotoLink.bind(null, '/maintenanceBySeverity/critical');
-    this.warningAlarmsLink = this.gotoLink.bind(null, '/maintenanceBySeverity/warning');
-    this.offlineDeviceLink = this.gotoLink.bind(null, '/devices/NotConnected');
-    this.totalDeviceLink = this.gotoLink.bind(null, '/devices');
-    this.onlineDeviceLink = this.gotoLink.bind(null, '/devices/Connected');
-  }
 
-  gotoLink(linkPath) {
-    browserHistory.push({
-      pathname: linkPath
-    });
-  }
+  getNavFunction = (pathname) => () => browserHistory.push({ pathname });
 
   render() {
     const regionDetailsProps = {
@@ -64,13 +52,13 @@ class RegionDetails extends Component {
       <Col md={3} className="device-location-conatiner">
         <h3>{selectedDeviceGroupName}</h3>
         <Row className="alarm-warning-container">
-          <Col md={6} className="total-alarms-container" onClick={this.criticalAlarmsLink}>
+          <Col md={6} className="total-alarms-container" onClick={this.getNavFunction('/maintenanceBySeverity/critical')}>
             <div className="total-alarms">{regionDetailsProps.totalAlarmDeviceCount}</div>
             <img src={CriticalSvg} alt={`${CriticalSvg}`} className="total triangle" />
             <div className="critical">{lang.CRITICAL}</div>
           </Col>
           <Col md={6} className="total-alarms-container warnings-container">
-            <div className="total-alarms total-warnings" onClick={this.warningAlarmsLink}>
+            <div className="total-alarms total-warnings" onClick={this.getNavFunction('/maintenanceBySeverity/warning')}>
               {regionDetailsProps.totalWarningsDeviceCount}
             </div>
             <img src={WarningSvg} alt={`${WarningSvg}`} className="triangle rectangle" />
@@ -78,17 +66,17 @@ class RegionDetails extends Component {
           </Col>
         </Row>
         <Row>
-          <Col md={4} className="total-container" onClick={this.totalDeviceLink}>
+          <Col md={4} className="total-container" onClick={this.getNavFunction('/devices')}>
             <div className="total">
               {regionDetailsProps.onlineDevicesCount + regionDetailsProps.offlineDevicesCount}
             </div>
             <div className="warnings">{lang.TOTAL}</div>
           </Col>
-          <Col md={4} className="total-container total-online-container" onClick={this.onlineDeviceLink}>
+          <Col md={4} className="total-container total-online-container" onClick={this.getNavFunction('/devices/Connected')}>
             <div className="total-connected">{regionDetailsProps.onlineDevicesCount}</div>
             <div className="connected">{lang.CONNECTED}</div>
           </Col>
-          <Col md={4} className="total-container total-offline-container" onClick={this.offlineDeviceLink}>
+          <Col md={4} className="total-container total-offline-container" onClick={this.getNavFunction('/devices/NotConnected')}>
             <div className="total-offline">{regionDetailsProps.offlineDevicesCount}</div>
             <div className="offline">{lang.OFFLINE}</div>
           </Col>
