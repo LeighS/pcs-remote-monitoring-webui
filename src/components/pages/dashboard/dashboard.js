@@ -11,7 +11,6 @@ import PageContent from '../../layout/pageContent/pageContent.js';
 import TopNav from '../../layout/topNav/topNav.js';
 import ContextFilters from '../../layout/contextFilters/contextFilters.js';
 import Telemetry from '../../telemetryWidget/telemetry';
-import AlarmList from '../../alarmList/alarmList';
 import KpiWidget from '../../kpiWidget/kpiWidget';
 import * as actions from '../../../actions';
 import DeviceMap from '../../deviceMap/deviceMap.js';
@@ -94,12 +93,7 @@ class DashboardPage extends Component {
 
     const devicesList = this.props.devices && this.props.devices.Items ? this.props.devices.Items : [];
     const devices = devicesList.map(({ Id }) => Id)
-    const alarmListProps = {
-      devices,
-      timeRange: this.state.timeRange,
-      dashboardRefresh: this.emitter,
-      rulesAndActions: this.props.rulesAndActions
-    };
+    
     const telemetryProps = {
       chartId: 'dashboard_telemetry_chart',
       devices: this.props.devices,
@@ -152,11 +146,8 @@ class DashboardPage extends Component {
         <PageContent>
           <Grid fluid className="layout">
             <Row>
-              <Col md={7}>
+              <Col md={12}>
                 <DeviceMap {...deviceMapProps} />
-              </Col>
-              <Col md={5}>
-                <AlarmList {...alarmListProps} />
               </Col>
             </Row>
             <Row>

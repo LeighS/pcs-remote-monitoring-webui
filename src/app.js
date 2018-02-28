@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Welcome to Azure IoT Remote Monitoring solution</h2>
+          <h2>Welcome to South 32 - Environmental Database Preview</h2>
         </div>
         <p className="App-intro">
           To get started, edit <code>src/app.js</code> and save to reload.

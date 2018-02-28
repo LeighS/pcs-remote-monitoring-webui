@@ -1,7 +1,7 @@
 #!/usr/bin/env bash -e
 
 # Note: use lowercase names for the Docker images
-DOCKER_IMAGE="azureiotpcs/pcs-remote-monitoring-webui"
+DOCKER_IMAGE="leighshayler/pcs-remote-monitoring-webui"
 # "testing" is the latest dev build, usually matching the code in the "master" branch
 DOCKER_TAG="$DOCKER_IMAGE:testing"
 
@@ -33,7 +33,7 @@ build_docker_image() {
 
     cd out/docker/
 
-    docker build --compress --tag $DOCKER_TAG \
+    docker build --squash --compress --tag $DOCKER_TAG \
         --label "$DOCKER_LABEL2" --label "$DOCKER_LABEL3" .
 }
 

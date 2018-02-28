@@ -2,7 +2,7 @@
 setlocal
 
 :: Note: use lowercase names for the Docker images
-SET DOCKER_IMAGE=azureiotpcs/pcs-remote-monitoring-webui
+SET DOCKER_IMAGE=leighshayler/pcs-remote-monitoring-webui
 :: "testing" is the latest dev build, usually matching the code in the "master" branch
 SET DOCKER_TAG=%DOCKER_IMAGE%:testing
 
@@ -38,7 +38,7 @@ cd %APP_HOME%
     copy scripts\docker\content\nginx.conf          out\docker\
 
     cd out\docker\
-    docker build --compress --tag %DOCKER_TAG% --label "%DOCKER_LABEL2%" .
+    docker build --squash --compress --tag %DOCKER_TAG% --label "%DOCKER_LABEL2%" .
         
     IF %ERRORLEVEL% NEQ 0 GOTO FAIL
 

@@ -9,15 +9,18 @@ import DashboardIcon from '../../../assets/icons/Dashboard.svg';
 import MaintenanceIcon from '../../../assets/icons/MaintenanceIcon.svg';
 import DevicesIcon from '../../../assets/icons/Devices.svg';
 import RulesIcon from '../../../assets/icons/RulesIcon.svg';
-import ContosoIcon from '../../../assets/icons/Contoso.svg';
+import ContosoIcon from '../../../assets/icons/south32-rev.svg';
 
 import './leftNav.css';
 
 const tabConfig = [
   { path: '/dashboard',    icon: DashboardIcon,    name: lang.DASHBOARD_LABEL },
+  { path: '/dashboard',    icon: DashboardIcon,    name: lang.REPORTS_LABEL },
+  { path: '/dashboard',    icon: DashboardIcon,    name: lang.DATAUPLOAD_LABEL },
   { path: '/devices',      icon: DevicesIcon,      name: lang.DEVICES },
   { path: '/rulesActions', icon: RulesIcon,        name: lang.RULES },
   { path: '/maintenance',  icon: MaintenanceIcon,  name: lang.MAINTENANCE }
+
 ];
 
 class LeftNav extends Component {
@@ -42,10 +45,9 @@ class LeftNav extends Component {
       <div className={`left-nav ${this.state.isExpanded ? 'expanded' : ''}`}>
 
         <div className="leftnav-item-container">
-          <div className="leftnav-item-icon">
-            <img src={ContosoIcon} className="page-title-icon" alt="ContosoIcon" />
+          <div className="leftnav-item-icon2">
+            <img src={ContosoIcon} className="page-title-icon" alt="ContosoIcon"/>
           </div>
-          <div className="leftnav-item-text">{lang.CONTOSO}</div>
         </div>
 
         <div className="leftnav-item-container hamburger" onClick={this.toggleExpansion}>

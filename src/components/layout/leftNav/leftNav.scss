@@ -36,6 +36,21 @@ $navItemHeight: 48px;
         width: 16px;
       }
     }
+    .leftnav-item-icon2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100px ;
+      width:  100px;
+      margin:30px;
+
+      > img {
+        height: 100px;
+        width: 100px;
+
+      }
+    }
+
 
     .leftnav-item-text { 
       display: none;

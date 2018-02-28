@@ -7,7 +7,6 @@ import * as actions from '../../../actions';
 import LeftNav from '../leftNav/leftNav.js';
 import Flyout from '../../flyout/flyout';
 import PcsModal from '../../shared/pcsModal/pcsModal';
-import lang from '../../../common/lang';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -21,11 +20,6 @@ class Main extends Component {
   componentDidMount() {
     this.props.actions.loadDevices();
 
-    // On the first page load, open a modal to direct the user to more information
-    this.props.actions.showModal(
-      lang.PREVIEWNOTICE,
-      'https://github.com/Azure/azure-iot-pcs-remote-monitoring-dotnet/blob/master/README.md'
-    );
   }
 
   render() {
